@@ -12,7 +12,7 @@ namespace FiguresMath.Shapes.Triangle
 
         public bool IsRectangular => IsRectangular(Sides[0], Sides[1], Sides[2]);
 
-        public override Func<ValidationResult> Validate => () => TriangleValidator.Validate(this);
+        public override Func<ValidationResult> IsValid => () => TriangleValidator.Validate(this);
 
         public Triangle(double sideA, double sideB, double sideC) : base([sideA, sideB, sideC])
         {

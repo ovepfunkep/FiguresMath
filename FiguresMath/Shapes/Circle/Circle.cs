@@ -12,7 +12,7 @@ namespace FiguresMath.Shapes.Circle
 
         public override double Area => GetArea(Radius);
 
-        public override Func<ValidationResult> Validate => () => CircleValidator.Validate(this);
+        public override Func<ValidationResult> IsValid => () => CircleValidator.Validate(this);
 
         public Circle(double radius)
         {
