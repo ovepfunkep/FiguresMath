@@ -5,7 +5,12 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiguresMath", "FiguresMath\FiguresMath.csproj", "{C8131144-B387-4AD7-B8FB-259DB36A90CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiguresTest", "FiguresTest\FiguresTest.csproj", "{6FB984C4-02CF-458C-A55E-0030A4F85771}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiguresTest", "FiguresTest\FiguresTest.csproj", "{6FB984C4-02CF-458C-A55E-0030A4F85771}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E4F9361A-D0DC-4BBA-BCC9-E8E4DA2F754F}"
+	ProjectSection(SolutionItems) = preProject
+		SQLTask.sql = SQLTask.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
