@@ -1,27 +1,29 @@
 ﻿using FiguresMath.Shapes.Base;
 using FiguresMath.Validation.Utils;
+
 using static FiguresMath.Validation.Utils.ValidationResult;
 
 namespace FiguresMath.Validation.Validators.Base
 {
-    public abstract class ValidatorBase<T> where T : Shape
+    public abstract class ValidatorBase
     {
-        // Count this as "abstract static"
-        public static IEnumerable<Func<T, ValidationResult>> ValidationFunctions { get; }
+        public abstract Shape ValidatingShape { get; set; }
+        public abstract IEnumerable<Func<ValidationResult>> ValidationFunctions { get; }
 
-        public static ValidationResult Validate(T shape)
+        public ValidationResult Validate()
         {
-            IEnumerable<ValidationResult> failedValidationsResults = ValidationFunctions.Select(f => f(shape))
+            IEnumerable<ValidationResult> failedValidationsResults = ValidationFunctions.Select(f => f())
                                                                                         .Where(vr => vr.ResultCode == Code.Error);
 
-            return failedValidationsResults.Any() ? new(Code.Error, string.Join('\n', failedValidationsResults.Select(vr => vr.Message))) :
-                                                    new(Code.Ok);
+            return failedValidationsResults.Any() ? new ValidationResult(Code.Error, string.Join('\n', failedValidationsResults.Select(vr => vr.Message))) :
+                                                    new ValidationResult(Code.Ok);
         }
 
-        protected static ValidationResult ValidateArguments(params double[] args) => Validate(args.Any(a => a <= 0), "Each argument must be grater than 0");
+        public static ValidationResult ValidateArguments(params double[] args) =>
+            Validate(args.Any(a => a <= 0), "Each argument must be greater than 0");
 
         protected static ValidationResult Validate(bool isError, string errorMessage) =>
-            isError ? new(Code.Error, errorMessage) :
-                      new(Code.Ok);
+            isError ? new ValidationResult(Code.Error, errorMessage) :
+                      new ValidationResult(Code.Ok);
     }
 }

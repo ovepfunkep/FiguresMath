@@ -1,6 +1,7 @@
 ﻿using FiguresMath.Shapes.Base;
 using FiguresMath.Validation.Utils;
 using FiguresMath.Validation.Validators;
+using FiguresMath.Validation.Validators.Base;
 
 using static FiguresMath.Helpers.TriangeHelper;
 
@@ -12,13 +13,20 @@ namespace FiguresMath.Shapes.Triangle
 
         public bool IsRectangular => IsRectangular(Sides[0], Sides[1], Sides[2]);
 
-        public override Func<ValidationResult> IsValid => () => TriangleValidator.Validate(this);
+        public override ValidatorBase Validator { get; set; }
 
         public Triangle(double sideA, double sideB, double sideC) : base([sideA, sideB, sideC])
         {
             Sides[0] = sideA;
             Sides[1] = sideB;
             Sides[2] = sideC;
+
+            Validator = new TriangleValidator(this);
+
+            ValidationResult validationResult = Validator.Validate();
+
+            if (validationResult.ResultCode == ValidationResult.Code.Error)
+                throw new ArgumentException(validationResult.Message);
         }
 
         public void Deconstruct(out double sideA, out double sideB, out double sideC)

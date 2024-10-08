@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FiguresMath.Validation.Utils
+﻿namespace FiguresMath.Validation.Utils
 {
     public record ValidationResult
     {

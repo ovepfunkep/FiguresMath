@@ -1,4 +1,4 @@
-﻿using FiguresMath.Validation.Utils;
+﻿using FiguresMath.Validation.Validators.Base;
 
 namespace FiguresMath.Shapes.Base
 {
@@ -6,13 +6,6 @@ namespace FiguresMath.Shapes.Base
     {
         public abstract double Area { get; }
 
-        public abstract Func<ValidationResult> IsValid { get; }
-
-        protected Shape()
-        {
-            ValidationResult validationResult = IsValid();
-            if (validationResult.ResultCode == ValidationResult.Code.Error) 
-                throw new ArgumentException($"Such shape can not exist because:{validationResult.Message}");
-        }
+        public abstract ValidatorBase Validator { get; set; }
     }
 }
